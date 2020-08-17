@@ -38,7 +38,9 @@ const PostSchema=new mongoose.Schema({
 const Post=module.exports=mongoose.model('post',PostSchema);
 
 module.exports.addPost=function(post,callback){
-    post.save(callback)
+    console.log(post)
+    post.save(callback);
+    
 }
 module.exports.deletePost=function(id,callback){
     var query={_id:id}

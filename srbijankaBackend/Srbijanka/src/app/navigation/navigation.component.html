@@ -1,4 +1,11 @@
+
+<!-- 
+<div  class="imageTop">
+  <img  src="../../assets/Logo.png" alt="">
+</div> -->
 <mat-sidenav-container class="sidenav-container" autosize>
+  
+
   <mat-sidenav #drawer class="sidenav" fixedInViewport="false"
       [ngClass]="{hidden : !(isHandset$ | async) }"
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
@@ -6,6 +13,7 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar [ngStyle]="{'background-color':'#004d00','color':'rgb(218, 218, 218)'}">Srbijanka</mat-toolbar>
     <mat-nav-list>
+      <a mat-list-item (click)="drawer.toggle()" href="#"></a>
 
       <a mat-list-item (click)="drawer.toggle()" href="#">Privreda</a>
       <a mat-list-item (click)="drawer.toggle()" href="#">ekonomija</a>
@@ -19,6 +27,7 @@
     
     </mat-nav-list>
   </mat-sidenav>
+  
   <mat-sidenav-content>
     <mat-toolbar [ngStyle]="{ 'background-color':'#006600'}">
       <button
@@ -30,9 +39,9 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
      
-      <div class="logo">
+      <div *ngIf="isHandset$ | async" [routerLink]="['/']" class="logo">
         <img src="../../assets/Logo.png"  alt="">
-      </div>
+      </div> 
       <div class="cen"  [ngClass]="{hidden : (isHandset$ | async) }">
         <button mat-button>Privreda</button>
         <button mat-button>ekonomija</button>
@@ -44,12 +53,13 @@
         <button mat-button>Organska</button>
 
       </div>
-      <span class="spacer"></span>
+      <span  *ngIf="!(isHandset$ | async)" class="spacer"></span>
+      <button mat-button-icon [routerLink]="['/addPost']"><mat-icon>add_circle_outline</mat-icon></button>
       <div class="log">
         <button mat-icon-button><mat-icon>account_circle</mat-icon> </button>
       </div>
     </mat-toolbar>
-    
+  
       <router-outlet></router-outlet>
       <app-footer></app-footer>
   </mat-sidenav-content>

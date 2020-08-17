@@ -1,14 +1,4 @@
-.imageTop {
-  padding: 1rem ;
-  display: flex;
-  justify-content: center;
- 
-}
 
 
 
-@media screen and (max-width:768px) {
-  .imageTop img {
-    width: 90%;
-  }
-}
+

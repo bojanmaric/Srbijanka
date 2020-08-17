@@ -1,7 +1,21 @@
+ 
+.mat-drawer-container {
+  background: url("../../assets/pexels-pixabay-207247.jpg")  ;
+  background-size: cover;
+  background-repeat: no-repeat;
+  
+} 
+
 .sidenav-container {
   height: 100%;
 }
 
+
+mat-toolbar{
+  position: fixed;
+  z-index: 20;
+
+}
 .sidenav {
   width: 200px;
 }
@@ -29,22 +43,26 @@
 .cen{
  width: 100%;
  margin: 0 auto;
- flex: 1 1;
+ flex: 1 1 auto;
  text-align: center;
+ 
 }
 .cen button{
   text-transform: uppercase;
   color: rgb(218, 218, 218);
   transition: .5;
+  font-weight: 300;
  
 }
 .logo{
-  margin-top: 10px;
-  margin-left: 10px;
+  margin: 10px auto 0 auto;
+  outline: none;
+  cursor: pointer;
 }
 .logo img{
   height: 40px;
   width: auto;
+  outline: none;
   
 }
 .cen button:hover{
@@ -55,4 +73,12 @@ mat-toolbar mat-icon{
 }
 mat-nav-list a{
   color: #004d00;
+}
+
+
+@media screen and (max-width:768px) {
+  .imageTop img {
+    width: 90%;
+    
+  }
 }

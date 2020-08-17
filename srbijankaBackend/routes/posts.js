@@ -24,8 +24,10 @@ var upload =multer({
 })
 
 router.post('/addPost',upload.single('file'), function(req,res,next){
+    console.log(req.file.filename)
     let post=new Post(JSON.parse(req.body.post));
-    post.srcSlika=req.file.filename;
+
+    post.picture=req.file.filename;
     Post.addPost(post,(err)=>{
         if(err){
             res.json({success:false,msg:'filed to add post'})
@@ -34,8 +36,62 @@ router.post('/addPost',upload.single('file'), function(req,res,next){
         }
     })
 });
+router.get('/getAll',function(req,res, next){
+    Post.getPosts((err,posts)=>{
+        if(err){
+            res.json({success:false,msg:'failed to get data'})
+        }else{
+            res.json({posts:posts})
+        }
+    })
+})
+router.get('/getPost/:id',(req,res)=>{
+    Post.getPostByID(req.params.id.toString(),(err, post)=>{
+        if(err){
+            res.json({success:false,msg:err})
+        }else{
+            res.json({post:post})
+        }
+    })
+})
 
+router.get('/image/:image', (req, res) => {
 
+    if (!fs.existsSync(path.join(__dirname, '../uploads/posts/', req.params.image)))
+        res.send("no")
+    else res.status(200).sendFile(path.resolve(path.join(__dirname, '../uploads/posts/', req.params.image)));
 
+});
+router.get('/category/:category',(req,res)=>{
+    Post.getPostsByCategory(req.params.category.toString(), (err,posts)=>{
+        if(err){
+            res.json({success:false, msg:err})
+        }else{
+            res.json({success:true, posts:posts})
+        }
+    })
+})
+
+router.delete('/:id',(req,res)=>{
+    Post.deletePost(req.params.id.toString(), (err)=>{
+        if(err){
+            res.json({success:false,msg:err})
+        }else{
+            res.json({success:true,msg:'uspesno ste izbrisali'})
+        }
+    })
+})
+router.delete('/brisi/:image',(req,res)=>{
+   
+    fs.unlinkSync('./uploads/posts/'+req.params.image)
+    if(!fs.existsSync(path.join(__dirname, '../uploads/posts/', req.params.image))){
+        res.json({success:true,msg:"Uspesno izbrisano"})
+    }else{
+        res.json({success:false,msg:"Doslo je do greske na serveru"})
+
+    }
+})
+
+module.exports=router;
 
 
