@@ -1,4 +1,5 @@
 export class Post {
+    _id:string;
     userPost:string;
     userID:string;
     picture:string;

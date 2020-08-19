@@ -14,10 +14,10 @@
         <div class="posts">
             <div *ngFor="let post of (posts | async)?.posts">
                 <div class="post">
-                    <div class="postImage">
-                        <img [src]="getImage(post.picture)" alt="">
+                    <div  class="postImage">
+                        <img [src]="getImage(post.picture)"  (click)="openPost(post._id)" alt="">
                     </div>
-                    <div class="postContent">
+                    <div  (click)="openPost(post._id)" class="postContent">
                         <div class="postDate">
                             {{post.date}}
                         </div>
@@ -26,12 +26,16 @@
                         </div>
                         <div class="postDescription">
                             <p> {{post.description}}</p>
+                           
+
                         </div>
+                        
+                        
     
                     </div>
     
     
-                    <div class="actions">
+                    <div *ngIf="ulogovanIn()" class="actions">
                         <button mat-raised-button color="success" (click)="deletePost(post)">Delete</button>
                     </div>
                 </div>
@@ -39,184 +43,6 @@
             </div>
 
 
-
-           <!--  <div class="post">
-                <div class="postImage">
-                    <img src="../../../assets/images_cms-image-000013509.jpg" alt="">
-                </div>
-                <div class="postContent">
-                    <div class="postDate">
-                        22.1.2020 11:23
-                    </div>
-                    <div class="postTitle">
-                        <h2>UHAPŠENO ČETVORO SUDSKIH IZVRŠITELJA IZ VALJEVA</h2>
-                    </div>
-                    <div class="postDescription">
-                        <p> Poljoprivredni proizvođači u Srbiji ove godine mogu da očekuju prosečan rod suncokreta, a
-                            rekordan soje i kukuruza ako ne bude vremenskih neprilika</p>
-                    </div>
-
-                </div>
-
-
-            </div>
-            <div class="post">
-                <div class="postImage">
-                    <img src="../../../assets/images_cms-image-000013509.jpg" alt="">
-                </div>
-                <div class="postContent">
-                    <div class="postDate">
-                        22.1.2020 11:23
-                    </div>
-                    <div class="postTitle">
-                        <h2>UHAPŠENO ČETVORO SUDSKIH IZVRŠITELJA IZ VALJEVA</h2>
-                    </div>
-                    <div class="postDescription">
-                        <p> Poljoprivredni proizvođači u Srbiji ove godine mogu da očekuju prosečan rod suncokreta, a
-                            rekordan soje i kukuruza ako ne bude vremenskih neprilika</p>
-                    </div>
-
-                </div>
-
-
-            </div>
-            <div class="post">
-                <div class="postImage">
-                    <img src="../../../assets/images_cms-image-000013509.jpg" alt="">
-                </div>
-                <div class="postContent">
-                    <div class="postDate">
-                        22.1.2020 11:23
-                    </div>
-                    <div class="postTitle">
-                        <h2>UHAPŠENO ČETVORO SUDSKIH IZVRŠITELJA IZ VALJEVA</h2>
-                    </div>
-                    <div class="postDescription">
-                        <p> Poljoprivredni proizvođači u Srbiji ove godine mogu da očekuju prosečan rod suncokreta, a
-                            rekordan soje i kukuruza ako ne bude vremenskih neprilika</p>
-                    </div>
-
-                </div>
-
-
-            </div>
-            <div class="post">
-                <div class="postImage">
-                    <img src="../../../assets/images_cms-image-000013509.jpg" alt="">
-                </div>
-                <div class="postContent">
-                    <div class="postDate">
-                        22.1.2020 11:23
-                    </div>
-                    <div class="postTitle">
-                        <h2>UHAPŠENO ČETVORO SUDSKIH IZVRŠITELJA IZ VALJEVA</h2>
-                    </div>
-                    <div class="postDescription">
-                        <p> Poljoprivredni proizvođači u Srbiji ove godine mogu da očekuju prosečan rod suncokreta, a
-                            rekordan soje i kukuruza ako ne bude vremenskih neprilika</p>
-                    </div>
-
-                </div>
-
-
-            </div>
-            <div class="post">
-                <div class="postImage">
-                    <img src="../../../assets/images_cms-image-000013509.jpg" alt="">
-                </div>
-                <div class="postContent">
-                    <div class="postDate">
-                        22.1.2020 11:23
-                    </div>
-                    <div class="postTitle">
-                        <h2>UHAPŠENO ČETVORO SUDSKIH IZVRŠITELJA IZ VALJEVA</h2>
-                    </div>
-                    <div class="postDescription">
-                        <p> Poljoprivredni proizvođači u Srbiji ove godine mogu da očekuju prosečan rod suncokreta, a
-                            rekordan soje i kukuruza ako ne bude vremenskih neprilika</p>
-                    </div>
-
-                </div>
-
-
-            </div>
-            <div class="post">
-                <div class="postImage">
-                    <img src="../../../assets/images_cms-image-000013509.jpg" alt="">
-                </div>
-                <div class="postContent">
-                    <div class="postDate">
-                        22.1.2020 11:23
-                    </div>
-                    <div class="postTitle">
-                        <h2>UHAPŠENO ČETVORO SUDSKIH IZVRŠITELJA IZ VALJEVA</h2>
-                    </div>
-                    <div class="postDescription">
-                        <p> Poljoprivredni proizvođači u Srbiji ove godine mogu da očekuju prosečan rod suncokreta, a
-                            rekordan soje i kukuruza ako ne bude vremenskih neprilika</p>
-                    </div>
-
-                </div>
-
-
-            </div>
-            <div class="post">
-                <div class="postImage">
-                    <img src="../../../assets/images_cms-image-000013509.jpg" alt="">
-                </div>
-                <div class="postContent">
-                    <div class="postDate">
-                        22.1.2020 11:23
-                    </div>
-                    <div class="postTitle">
-                        <h2>UHAPŠENO ČETVORO SUDSKIH IZVRŠITELJA IZ VALJEVA</h2>
-                    </div>
-                    <div class="postDescription">
-                        <p> Poljoprivredni proizvođači u Srbiji ove godine mogu da očekuju prosečan rod suncokreta, a
-                            rekordan soje i kukuruza ako ne bude vremenskih neprilika</p>
-                    </div>
-
-                </div>
-
-
-            </div>
-            <div class="post">
-                <div class="postImage">
-                    <img src="../../../assets/images_cms-image-000013509.jpg" alt="">
-                </div>
-                <div class="postContent">
-                    <div class="postDate">
-                        22.1.2020 11:23
-                    </div>
-                    <div class="postTitle">
-                        <h2>UHAPŠENO ČETVORO SUDSKIH IZVRŠITELJA IZ VALJEVA</h2>
-                    </div>
-                    <div class="postDescription">
-                        <p> Poljoprivredni proizvođači u Srbiji ove godine mogu da očekuju prosečan rod suncokreta, a
-                            rekordan soje i kukuruza ako ne bude vremenskih neprilika</p>
-                    </div>
-
-                </div>
-
-
-            </div>
-            <div class="post">
-                <div class="postImage">
-                    <img src="../../../assets/images_cms-image-000013509.jpg" alt="">
-                </div>
-                <div class="postContent">
-                    <div class="postDate">
-                        22.1.2020 11:23
-                    </div>
-                    <div class="postTitle">
-                        <h2>UHAPŠENO ČETVORO SUDSKIH IZVRŠITELJA IZ VALJEVA</h2>
-                    </div>
-                    <div class="postDescription">
-                        <p> Poljoprivredni proizvođači u Srbiji ove godine mogu da očekuju prosečan rod suncokreta, a
-                            rekordan soje i kukuruza ako ne bude vremenskih neprilika</p>
-                    </div>
-                </div>
-            </div> -->
         </div>
 
     </div>

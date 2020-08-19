@@ -1,6 +1,7 @@
 var express= require('express');
 var router=express.Router();
 const Post=require('../models/post');
+const Comment=require('../models/comments');
 const path=require('path');
 const crypto=require('crypto');
 const multer = require('multer');
@@ -91,7 +92,34 @@ router.delete('/brisi/:image',(req,res)=>{
 
     }
 })
+router.get('/getComments/:id',(req,res)=>{
+    Comment.getPostByID(req.params.id.toString(),(err,comments)=>{
+        if(err){
+            res.json({success:false, msg:'Server error'})
+        }else{
+            res.json({success:true, comments:comments})
+        }
+    })
+})
 
+router.post('/comment',(req, res)=>{
+   
+    
+    const comm=new Comment({
+        postID: req.body.postID,
+        name: req.body.name,
+        content: req.body.content,
+        banned: req.body.banned   
+     });
+
+    Comment.addComment(comm,(err)=>{
+        if(err){
+            res.json({success:false,msg:'filed to add Comment'})
+        }else{
+            res.json({success:true, msg:'Comment successful added'})
+        }
+    })
+})
 module.exports=router;
 
 

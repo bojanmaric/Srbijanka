@@ -21,6 +21,11 @@ import { AddcatalogComponent } from './admin/addcatalog/addcatalog.component';
 import { AddimageComponent } from './admin/addimage/addimage.component';
 import { AddvideosComponent } from './admin/addvideos/addvideos.component'
 import { PostService } from './servisi/post.service';
+import { LoginComponent } from "./components/login/login.component";
+import { RegistrationComponent } from "./components/registration/registration.component";
+import {AuthGuard} from './auth/auth.guard';
+import { AuthInterceptor } from './auth/auth.interceptor';
+import { LoginService } from './servisi/login.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +51,9 @@ import { PostService } from './servisi/post.service';
   
     AddimageComponent,
   
-    AddvideosComponent
+    AddvideosComponent,
+    LoginComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +66,11 @@ import { PostService } from './servisi/post.service';
     FormsModule
 
   ],
-  providers: [PostService],
+  providers: [{
+    provide:HTTP_INTERCEPTORS, 
+    useClass:AuthInterceptor,
+    multi:true
+  },PostService,LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

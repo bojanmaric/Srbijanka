@@ -3,6 +3,8 @@ import { PostService } from 'src/app/servisi/post.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { Post } from 'src/app/models/Post';
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/servisi/login.service';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +15,7 @@ export class HomeComponent implements OnInit {
 
   ruta: string = 'http://localhost:3000/api/posts/image/';
 
-  constructor( private postService: PostService, private snackBar: MatSnackBar) { }
+  constructor(private logingService:LoginService, private postService: PostService, private snackBar: MatSnackBar, private router:Router) { }
 
    public posts:any=[];
 
@@ -39,6 +41,10 @@ export class HomeComponent implements OnInit {
     this.loadData();
   }
 
+  openPost(id){
+    this.router.navigate(['/post/'+id])
+
+  }
   loadData(){
     this.posts =  this.postService.getAllPosts();
     
@@ -47,5 +53,12 @@ export class HomeComponent implements OnInit {
   getImage(img){
     return this.ruta+img
 
+  }
+  
+  ulogovanIn() {
+    if (this.logingService.isLogged()) {
+      return true;
+    }
+    return false;
   }
 }

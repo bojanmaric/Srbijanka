@@ -8,7 +8,7 @@
 
             <mat-form-field appearance="fill">
                 <mat-label>Naslov Objave </mat-label>
-                <input matInput formControlName="title">
+                <input matInput required formControlName="title">
             </mat-form-field>
             <!--  <mat-form-field appearance="fill">
         <mat-label>Tekst Objave</mat-label>
@@ -30,10 +30,11 @@
             </mat-form-field>
 
 
-            <div class="desc">
-                <label for="desc">Sadrzaj objave</label>
-                <textarea formControlName="description" id="desc" cols="30" rows="10"></textarea>
-            </div>
+            <mat-form-field appearance="fill">
+                <mat-label>Sadržaj objave</mat-label>
+               <textarea matInput cols="30" required rows="10" formControlName="description"></textarea>
+            </mat-form-field>
+          
 
             <mat-form-field appearance="fill">
                 <mat-label>Video</mat-label>

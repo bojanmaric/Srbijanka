@@ -56,9 +56,6 @@ export class PostService {
       }
     )
     return uspesno
-   
-    
-    
   }
   public addPost(post,file){
     var body=JSON.stringify(post.value);
@@ -66,6 +63,14 @@ export class PostService {
     fData.append('post',body);
     fData.append('file',file,file.name);
     return this.httpClient.post(this.ruta+'/addPost',fData)
+  }
+  public addComment(comment){
+    var body=JSON.stringify(comment.value);
+    const fdata:FormData=new FormData();
+    
+    fdata.append('comment',body);
+    console.log(fdata)
+    return this.httpClient.post(this.ruta+'/comment',comment.value)
   }
 
 }

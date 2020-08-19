@@ -9,11 +9,13 @@ import { AddimageComponent } from './admin/addimage/addimage.component';
 import { AddvideosComponent } from './admin/addvideos/addvideos.component';
 import { AddcatalogComponent } from './admin/addcatalog/addcatalog.component';
 import { MagazinComponent } from './components/magazin/magazin.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegistrationComponent } from './components/registration/registration.component';
 
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
-  {path:'post',component:PostComponent},
+  {path:'post/:id',component:PostComponent},
   {path:'videos',component:VideosComponent},
   {path:'image',component:ImagesComponent},
   {path:'magazin',component:MagazinComponent},
@@ -21,7 +23,9 @@ const routes: Routes = [
 
   {path:'addImage',component:AddimageComponent},
   {path:'addVideon',component:AddvideosComponent},
-  {path:'addCatalog',component:AddcatalogComponent}
+  {path:'addCatalog',component:AddcatalogComponent},
+  {path:'login',component:LoginComponent},
+  {path:'registration',component:RegistrationComponent}
 
 ];
 

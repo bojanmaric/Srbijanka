@@ -44,15 +44,21 @@
 
 .posts .post {
 
-    width: 220px; 
-    height: auto;
-    max-height: 300px;
+  width: 220px;
+  height: auto;
+  max-height: 320px;
+  padding-bottom: 1.6rem;
+
 
   margin: .8em;
   overflow: hidden;
   box-shadow: -3px 0 8px 0 rgb(121, 121, 121);
   position: relative;
 
+}
+
+.post:hover {
+  cursor: pointer;
 }
 
 .post .postImage {
@@ -90,15 +96,23 @@
 
 
 }
-.actions{
+
+.actions {
   position: absolute;
   margin: 10px;
   top: 0;
-  
+  z-index: 1;
+
 }
 
 .post .postContent .postDescription {
   text-align: justify;
+  
+  
+}
+.postDescription p{
+  height: 100px;
+  overflow: hidden;
 }
 
 
@@ -138,7 +152,7 @@
   padding: 1rem;
   display: flex;
   justify-content: center;
- 
+
 }
 
 @media (max-width:1000px) {
@@ -153,6 +167,7 @@
   .imageTop img {
     width: 90%;
   }
+
   .post .postContent .postTitle h2 {
     font-size: 16px;
   }
