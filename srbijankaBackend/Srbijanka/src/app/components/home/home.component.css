@@ -2,9 +2,9 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  margin-left: 1rem;
   padding-top: 1rem;
-  display: grid;
-  grid-template-columns: 70% 30%;
+
   background-color: #fff;
   opacity: .95;
   border-radius: 3px;
@@ -44,8 +44,9 @@
 
 .posts .post {
 
-  width: 220px;
-  height: auto;
+  width: 100%;
+  max-width: 220px;
+ 
   max-height: 320px;
   padding-bottom: 1.6rem;
 
@@ -146,15 +147,6 @@
 
 
 
-.imageTop {
-
-  margin-top: 5rem;
-  padding: 1rem;
-  display: flex;
-  justify-content: center;
-
-}
-
 @media (max-width:1000px) {
   .home .mainSide .posts {
     grid-template-columns: repeat(2, 1fr);
@@ -171,14 +163,21 @@
   .post .postContent .postTitle h2 {
     font-size: 16px;
   }
-
+/* 
   .home {
     grid-template-columns: 100%;
 
-  }
+  } */
 
   .aside {
     margin-top: 1rem;
+  }
+  .posts{
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+  .post{
+    width: 100%;
   }
 
   .aside .videos {

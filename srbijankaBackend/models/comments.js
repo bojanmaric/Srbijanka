@@ -18,6 +18,9 @@ const CommentSchema = new mongoose.Schema({
     banned: {
         type: Boolean,
         required: true
+    },
+    date:{
+        type:Date
     }
 
 });
@@ -33,10 +36,13 @@ module.exports.deleteComment = function (id, callback) {
 
 }
 module.exports.updateComment = function (id, comment, callback) {
-    Comment.findByIdAndUpdate({ _id: id }, { $set: comment }, callback)
+  var query={ "_id": id }
+  console.log(query,comment)
+    Comment.findByIdAndUpdate(query, { $set: comment }, callback)
 }
 module.exports.getComenntsByPostID = function (id, callback) {
-    Comment.find({ 'postID': id }, { 'banned': false }, callback)
+    console.log(id)
+    Comment.find({ 'postID': id , 'banned': false }, callback)
 }
 
 module.exports.getBannedComment = function (callback) {

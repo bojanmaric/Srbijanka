@@ -3,5 +3,6 @@ export class Comment{
     name:string;
     content:string;
     banned:boolean;
+    date:Date
 
 }

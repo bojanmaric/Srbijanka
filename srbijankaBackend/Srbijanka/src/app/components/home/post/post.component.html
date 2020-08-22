@@ -2,7 +2,7 @@
     <div class="main">
         <div class="postPart">
             <div class="postImg">
-                <img [src]="getImage(post.picture)" alt="">
+                <img [src]="getImage(post.picture)" alt="Slika">
             </div>
             <div class="author">
                 <h5>
@@ -15,11 +15,15 @@
             <div class="title">
                 <h1>{{post.title}}</h1>
             </div>
+            <div *ngIf="post.video!='noVideo'" class="postImg">
+                <iframe [src]="getVideo(post.video)" [ngStyle]="{'width':'60%','height':'auto','padding':'1rem'}" frameborder="0" ></iframe>
+            </div>
             <div class="description">
                 <h3>{{post.description}} </h3>
             </div>
 
         </div>
+        <hr class="hr">
         <div class="commentPart">
             <h3>Svaki komentar će pregledati urednici pre objavljivanja na sajtu</h3>
             <form class="commentForm" (ngSubmit)="postComment()" [formGroup]="comment">
@@ -36,69 +40,30 @@
                     <button mat-raised-button type="submit" color="primary">POŠALJI</button>
                 </div>
             </form>
+            <div class="commentSuccess">
+                <h2>Uspeno ste poslali komentar, nakon pregleda bice postavljen. </h2>
+            </div>
 
         </div>
 
         <div class="komentari">
-            <h1>Komentari</h1>
-            <hr>
-            
+            <div class="title">
+                <h1>KOMENTARI <span *ngIf="comments.length>0">{{comments.length}}</span> </h1>
+            </div>
+            <hr class="hr">
+            <div class="komentar" *ngIf="comments.length==0">
+                <h2>Nema komentara</h2>
+            </div>
+            <div *ngIf="comments.length>0">
+            <div  *ngFor="let comment of comments">
+               <div class="komentar">
+                   <h2>{{comment.name}},&nbsp;<span class="komDate">{{comment.date | date: 'M/d/yy, h:mm'}}</span> <span class="h4">{{comment.content}}</span></h2>
+                  
+               </div>
+            </div> 
+        </div>
         </div>
        
     </div>
-    <div class="aside">
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consectetur nisi odit officia adipisci possimus
-            fugit, quae ullam, error optio distinctio eos repellat minima odio rerum corrupti, ut placeat et amet?
-            Culpa amet minima eum. Explicabo eligendi beatae quae, commodi accusantium unde doloremque minus culpa quo
-            sequi consectetur. Officia quis laudantium est, delectus tempore sed cumque ab rem quos impedit et!
-            Distinctio saepe repellat rem, alias non assumenda error animi nobis exercitationem cumque sequi, quam est
-            tempore numquam asperiores ad doloribus ipsum nisi optio quae minus atque at quibusdam. Tenetur, ipsum!
-            Dolore quae corporis, ex earum reiciendis sapiente nihil ipsam ut repellendus, debitis sequi quibusdam,
-            quasi laudantium? Fuga voluptatum laborum nostrum nisi unde. Ullam molestias totam quas placeat illo unde
-            dolore.
-            Soluta natus ratione distinctio blanditiis eligendi repellat inventore qui quo. Omnis error molestias
-            doloremque ipsa in. Quae impedit molestiae voluptatibus mollitia libero velit optio neque eius quis! Iste,
-            explicabo dicta?
-            Ducimus numquam et culpa harum mollitia at, illum, magnam, exercitationem optio sed saepe est officia?
-            Obcaecati fugiat ducimus esse cum ipsam ratione minima sint hic unde. Laudantium soluta nostrum est.
-            Obcaecati minima asperiores fugit nemo officia odit, dignissimos eligendi praesentium. Esse culpa,
-            voluptatem quod aliquam quia delectus et reiciendis tenetur ipsa quibusdam alias. Dignissimos ratione, id
-            nulla pariatur tenetur ut.
-            Amet, quo culpa? Vero, sed ad beatae laboriosam accusantium incidunt esse delectus? Nostrum pariatur earum
-            in quam ullam sequi eos provident facilis. Sapiente praesentium magni rem beatae quo eius eveniet?
-            Similique molestias quae eaque velit nobis nesciunt! Magnam assumenda voluptas odit consectetur sit nemo
-            molestiae corporis, officia repellendus, nesciunt recusandae dolor reprehenderit laboriosam exercitationem
-            voluptates officiis similique laborum, dolore qui.
-            Optio minima quis quas expedita et impedit repellat? Temporibus ipsum ab modi dolor repellendus a vero,
-            suscipit nemo, quae sapiente pariatur quod velit aliquid rem obcaecati eligendi autem? Commodi, maiores.
-            Esse, beatae? Similique officia impedit laborum autem minima qui necessitatibus facere molestias placeat
-            exercitationem illum corporis totam, voluptatibus eum magnam quas illo sed ipsam dicta. Non beatae veritatis
-            alias voluptates.
-            Ad fugit fugiat non, magnam sint, ipsum dignissimos distinctio sunt, aspernatur modi unde reprehenderit! Ad
-            repellat dolorem quod nihil dignissimos, consequatur doloribus cupiditate! Pariatur ab accusamus quibusdam
-            vel dolorum facilis?
-            Adipisci hic ad temporibus corrupti quas incidunt! Ipsam, quo? Vel at, quidem odit aliquid eaque quis
-            voluptates consectetur amet? Unde nostrum debitis fugiat esse voluptas officia quos, et magnam repudiandae.
-            Quibusdam, laudantium, earum modi, ipsa voluptates blanditiis commodi excepturi neque unde labore
-            necessitatibus facilis quisquam laborum quod? Velit sequi dolorum dolor itaque, distinctio assumenda quia
-            soluta aspernatur illo eligendi! Tenetur?
-            Fugiat, deserunt delectus doloremque ipsa fuga dolores eaque eos? Ducimus, aspernatur deleniti error ad
-            delectus vero deserunt tempore perferendis eligendi? Repellendus dolores consectetur at nulla distinctio
-            rerum perspiciatis beatae a.
-            At minima ducimus quam autem necessitatibus odit nobis eius cupiditate in. Cupiditate saepe ipsum iure in
-            dignissimos. Veniam earum tempora, dicta debitis perferendis quas sunt, odit eius voluptatibus voluptates
-            odio.
-            Mollitia rerum quasi reprehenderit voluptate accusamus harum. Voluptates vero laborum aspernatur distinctio
-            ea cupiditate ut quisquam nam quidem consequatur esse harum accusamus earum magnam est ipsum, nesciunt enim
-            sint totam!
-            Blanditiis itaque tempore enim rerum aspernatur animi eius fugit ratione tenetur eos. Deleniti odit earum
-            vel inventore doloremque in molestias cum tempora delectus. Neque eos minima ullam, adipisci delectus
-            assumenda?
-            Magni, quod veniam officia, neque esse unde expedita qui suscipit provident in excepturi iusto dicta sunt
-            quos culpa laudantium veritatis omnis natus adipisci nostrum obcaecati soluta quis eveniet quibusdam?
-            Beatae.
-            Iusto deserunt, quasi voluptatibus perspiciatis impedit exercitationem earum modi vel aliquam odit iste
-            debitis sequi, laborum illo labore, deleniti adipisci voluptas magnam. Dignissimos quaerat porro quibusdam
-            modi hic, ab placeat?</p>
-    </div>
+    
 </div>

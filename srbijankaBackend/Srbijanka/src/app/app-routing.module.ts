@@ -11,6 +11,8 @@ import { AddcatalogComponent } from './admin/addcatalog/addcatalog.component';
 import { MagazinComponent } from './components/magazin/magazin.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { CommentviewComponent } from './admin/commentview/commentview.component';
+import { AuthGuard } from './auth/auth.guard';
 
 
 const routes: Routes = [
@@ -19,13 +21,13 @@ const routes: Routes = [
   {path:'videos',component:VideosComponent},
   {path:'image',component:ImagesComponent},
   {path:'magazin',component:MagazinComponent},
-  {path:'addPost',component:AddpostComponent},
-
-  {path:'addImage',component:AddimageComponent},
-  {path:'addVideon',component:AddvideosComponent},
-  {path:'addCatalog',component:AddcatalogComponent},
+  {path:'addPost',component:AddpostComponent, canActivate: [AuthGuard] },
+  {path:'addImage',component:AddimageComponent, canActivate: [AuthGuard] },
+  {path:'addVideon',component:AddvideosComponent, canActivate: [AuthGuard] },
+  {path:'addCatalog',component:AddcatalogComponent, canActivate: [AuthGuard] },
   {path:'login',component:LoginComponent},
-  {path:'registration',component:RegistrationComponent}
+  {path:'registration',component:RegistrationComponent, canActivate: [AuthGuard] },
+  {path:'commentView',component:CommentviewComponent, canActivate: [AuthGuard] }
 
 ];
 

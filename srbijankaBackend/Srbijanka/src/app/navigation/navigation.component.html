@@ -10,10 +10,8 @@
     [opened]="(isHandset$ | async) === false">
     <mat-toolbar [ngStyle]="{'background-color':'#004d00','color':'rgb(218, 218, 218)'}">Srbijanka</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item (click)="drawer.toggle()" href="#"></a>
       <a mat-list-item (click)="drawer.toggle()" [routerLink]="['/']"></a>
-
-
+      <a mat-list-item (click)="drawer.toggle()" [routerLink]="['/']">Početna</a>
       <a mat-list-item (click)="drawer.toggle()" href="#">Privreda</a>
       <a mat-list-item (click)="drawer.toggle()" href="#">ekonomija</a>
       <a mat-list-item (click)="drawer.toggle()" href="#">Turizam</a>
@@ -55,7 +53,7 @@
       <div *ngIf="ulogovanIn()" class="adminPanel">
         <button mat-icon-button [matMenuTriggerFor]="beforeMenu"><mat-icon>support_agent</mat-icon></button>
         <mat-menu #beforeMenu="matMenu" xPosition="before">
-        <button mat-menu-item>Pregled komentara</button>
+        <button mat-menu-item [routerLink]="['/commentView']">Pregled komentara</button>
        
         <button mat-menu-item [routerLink]="['/addPost']">Dodaj Post</button>
         <button mat-menu-item [routerLink]="['/registration']">Registration</button>
@@ -74,7 +72,37 @@
       </div>
     </mat-toolbar>
 
-    <router-outlet></router-outlet>
+    <div  class="imageTop">
+      <img  src="../../assets/Logo.png" alt="">
+    </div>
+   
+    <div class="centerPart">
+      <div class="left">
+       <router-outlet></router-outlet>
+      </div>
+      <div class="right">
+        <div class="magazin">
+          <div class="magazinPost">
+              <img src="../../../assets/II-Pcelarski-podsetnik-3D-Cover.jpg" alt="">
+              <h2>novi broj magazina</h2>
+          </div>
+          <div class="magazinPost">
+              <img src="../../../assets/Lekovito-bilje-3D-naslovna.jpg" alt="">
+              <h2>mazazinbr 213</h2>
+          </div>
+        
+
+      </div>
+
+      <div class="videos">
+          <iframe src="https://www.youtube.com/embed/FUS6DWu1pUU" frameborder="0"></iframe>
+          <iframe src="https://www.youtube.com/embed/FUS6DWu1pUU" frameborder="0"></iframe>
+          <iframe src="https://www.youtube.com/embed/FUS6DWu1pUU" frameborder="0"></iframe> 
+
+
+      </div>
+      </div>
+    </div>
     <app-footer></app-footer>
   </mat-sidenav-content>
 </mat-sidenav-container>

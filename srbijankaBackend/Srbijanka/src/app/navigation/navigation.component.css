@@ -76,9 +76,73 @@ mat-nav-list a{
 }
 
 
+.centerPart{
+  margin: auto;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 70% 30%;
+ 
+}
+
+.magazin{
+  display: block;
+  
+}
+.magazin .magazinPost {
+  margin: 5px auto;
+  width: 70%;
+  
+}
+
+.magazin .magazinPost img {
+  width: 100%;
+}
+/* 
+.magazin {
+  display: grid;
+  grid-template-columns: 50% 50%;
+} */
+
+
+
+.imageTop {
+
+  margin-top: 5rem;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+
+}
+.right{
+  /* 
+ margin: 0 1rem 0 .2rem; */
+  background-color: #fff;
+  opacity: .9;
+}
+.right .videos {
+  margin-top: 1rem;
+  width: 90%;
+  margin: auto;
+
+}
+
+.right .videos iframe {
+  width: 90%;
+  height: auto;
+  margin: 10px;
+}
 @media screen and (max-width:768px) {
   .imageTop img {
     width: 90%;
     
+  }
+  .centerPart{
+    display: grid;
+    grid-template-columns:100%;
+  }
+  
+  .right .magazin{
+    display: grid;
+    grid-template-columns: 50% 50%;
   }
 }

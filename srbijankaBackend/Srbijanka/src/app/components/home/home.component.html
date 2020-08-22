@@ -1,7 +1,4 @@
-<div  class="imageTop">
-    <img  src="../../assets/Logo.png" alt="">
-  </div>
- 
+
 <div class="home">
    
     <div class="mainSide">
@@ -19,7 +16,7 @@
                     </div>
                     <div  (click)="openPost(post._id)" class="postContent">
                         <div class="postDate">
-                            {{post.date}}
+                            {{post.date | date: 'M/d/yy, h:mm'}}
                         </div>
                         <div class="postTitle">
                             <h2>{{post.title}}</h2>
@@ -30,8 +27,6 @@
 
                         </div>
                         
-                        
-    
                     </div>
     
     
@@ -46,7 +41,7 @@
         </div>
 
     </div>
-    <div class="aside">
+   <!--  <div class="aside">
         <div class="magazin">
             <div class="magazinPost">
                 <img src="../../../assets/II-Pcelarski-podsetnik-3D-Cover.jpg" alt="">
@@ -65,15 +60,15 @@
         </div>
 
         <div class="videos">
-<!-- 
-            <iframe src="https://www.youtube.com/embed/FUS6DWu1pUU" frameborder="0"></iframe>
-            <iframe src="https://www.youtube.com/embed/FUS6DWu1pUU" frameborder="0"></iframe>
-            <iframe src="https://www.youtube.com/embed/FUS6DWu1pUU" frameborder="0"></iframe>
 
- -->
+            <iframe src="https://www.youtube.com/embed/FUS6DWu1pUU" frameborder="0"></iframe>
+            <iframe src="https://www.youtube.com/embed/FUS6DWu1pUU" frameborder="0"></iframe>
+            <iframe src="https://www.youtube.com/embed/FUS6DWu1pUU" frameborder="0"></iframe> 
+
+
         </div>
 
     </div>
-
+ -->
 
 </div>

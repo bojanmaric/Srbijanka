@@ -6,6 +6,7 @@ const path=require('path');
 const crypto=require('crypto');
 const multer = require('multer');
 const fs=require('fs');
+const authenticate=require('../config/authenticate');
 const {json}=require('express')
 
 var storage=multer.diskStorage({
@@ -24,7 +25,7 @@ var upload =multer({
     storage:storage
 })
 
-router.post('/addPost',upload.single('file'), function(req,res,next){
+router.post('/addPost',upload.single('file'), authenticate, function(req,res,next){
     console.log(req.file.filename)
     let post=new Post(JSON.parse(req.body.post));
 
@@ -73,7 +74,7 @@ router.get('/category/:category',(req,res)=>{
     })
 })
 
-router.delete('/:id',(req,res)=>{
+router.delete('/:id',authenticate, (req,res)=>{
     Post.deletePost(req.params.id.toString(), (err)=>{
         if(err){
             res.json({success:false,msg:err})
@@ -82,7 +83,7 @@ router.delete('/:id',(req,res)=>{
         }
     })
 })
-router.delete('/brisi/:image',(req,res)=>{
+router.delete('/brisi/:image',authenticate, (req,res)=>{
    
     fs.unlinkSync('./uploads/posts/'+req.params.image)
     if(!fs.existsSync(path.join(__dirname, '../uploads/posts/', req.params.image))){
@@ -93,11 +94,13 @@ router.delete('/brisi/:image',(req,res)=>{
     }
 })
 router.get('/getComments/:id',(req,res)=>{
-    Comment.getPostByID(req.params.id.toString(),(err,comments)=>{
+    
+    
+    Comment.getComenntsByPostID(req.params.id.toString(),(err,comments)=>{
         if(err){
             res.json({success:false, msg:'Server error'})
         }else{
-            res.json({success:true, comments:comments})
+            res.json({ comments:comments})
         }
     })
 })
@@ -109,7 +112,8 @@ router.post('/comment',(req, res)=>{
         postID: req.body.postID,
         name: req.body.name,
         content: req.body.content,
-        banned: req.body.banned   
+        banned: req.body.banned,
+        date:req.body.date   
      });
 
     Comment.addComment(comm,(err)=>{
@@ -117,6 +121,43 @@ router.post('/comment',(req, res)=>{
             res.json({success:false,msg:'filed to add Comment'})
         }else{
             res.json({success:true, msg:'Comment successful added'})
+        }
+    })
+})
+router.put('/comment/:id',authenticate, (req,res)=>{
+    console.log(req.body)
+    const comment={
+        postID: req.body.postID,
+        name: req.body.name,
+        content: req.body.content,
+        banned: req.body.banned,
+        date:req.body.date   
+    }
+  
+    Comment.updateComment(req.params.id.toString(), comment,(err)=>{
+        if(err){
+            res.json({success:false,msg:err})
+        }else{
+            res.json({success:true,msg:'Uspesno ste izvrsili izmenu'})
+        }
+    })
+
+});
+router.delete('/comment/:id',authenticate, (req,res)=>{
+    Comment.deleteComment(req.params.id,(err)=>{
+        if(err){
+            res.json({success:false, msg:err})
+        }else{
+            res.json({success:true,msg:'Uspesno izbrisan comentar'})
+        }
+    })
+})
+router.get('/getComments',(req,res)=>{
+    Comment.getBannedComment((err,comments)=>{
+        if(err){
+            res.json({success:false,msg:err})
+        }else{
+            res.json({comments:comments})
         }
     })
 })

@@ -26,6 +26,9 @@ import { RegistrationComponent } from "./components/registration/registration.co
 import {AuthGuard} from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { LoginService } from './servisi/login.service';
+import { CommentviewComponent } from './admin/commentview/commentview.component';
+import { CommentDialogComponent } from './components/dialogs/comment-dialog/comment-dialog.component';
+import { MagaziniComponent } from './components/magazini/magazini.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,10 @@ import { LoginService } from './servisi/login.service';
   
     AddvideosComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    CommentviewComponent,
+    CommentDialogComponent,
+    MagaziniComponent
   ],
   imports: [
     BrowserModule,

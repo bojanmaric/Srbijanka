@@ -65,12 +65,20 @@ export class PostService {
     return this.httpClient.post(this.ruta+'/addPost',fData)
   }
   public addComment(comment){
-    var body=JSON.stringify(comment.value);
-    const fdata:FormData=new FormData();
     
-    fdata.append('comment',body);
-    console.log(fdata)
     return this.httpClient.post(this.ruta+'/comment',comment.value)
   }
 
+  public getCommentsByPostID(id){
+    return this.httpClient.get(this.ruta+'/getComments/'+id);
+  }
+  public getBannedComments(){
+    return this.httpClient.get(this.ruta+'/getComments');
+  }
+  public updateComment(id, comment){
+    return this.httpClient.put(this.ruta+'/comment/'+id,comment)
+  }
+  public deleteComment(id){
+    return this.httpClient.delete(this.ruta+'/comment/'+id)
+  }
 }

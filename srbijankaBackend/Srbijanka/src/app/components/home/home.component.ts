@@ -20,17 +20,13 @@ export class HomeComponent implements OnInit {
    public posts:any=[];
 
   ngOnInit() {
-   /*  this.postService.getAllPosts().subscribe(
-      data=>{
-        console.log(data)
-      }
-    ) */
+  
     this.loadData();
   }
   deletePost(post){
     
     const uspesno = this.postService.deletePost(post._id,post.picture);
-    console.log(uspesno)
+    
     if(uspesno){
       this.snackBar.open('uspesno ste izbrisali post','OK',{duration:1500})
       this.loadData();
@@ -48,7 +44,6 @@ export class HomeComponent implements OnInit {
   loadData(){
     this.posts =  this.postService.getAllPosts();
     
-    console.log(this.posts)
   }
   getImage(img){
     return this.ruta+img
