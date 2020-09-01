@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { KataloziSlikeService } from 'src/app/servisi/katalozi-slike.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder } from '@angular/forms';
+import { Image } from 'src/app/models/Image';
 
 @Component({
   selector: 'app-addimage',
@@ -10,25 +11,63 @@ import { FormBuilder } from '@angular/forms';
 })
 export class AddimageComponent implements OnInit {
 
-  constructor(private katService:KataloziSlikeService, private snackBar:MatSnackBar, private fb:FormBuilder) { }
+  constructor(private katService: KataloziSlikeService, private snackBar: MatSnackBar, private fb: FormBuilder) { }
 
+  img: Image;
   ngOnInit(): void {
-
+    this.loadImg();
   }
-  file:File=null;
+  file: File = null;
 
-  image= this.fb.group({
-    srcSlika:[''],
-    description:[''],
-    date:[Date.now()]
-    
+  image = this.fb.group({
+    srcSlika: [''],
+    description: [''],
+    date: [Date.now()]
+
   })
 
-  onImageAdded(event){
-    this.file=event.target.files[0];
+  loadImg() {
+    this.katService.getLastDailyImage().subscribe(data => {
+      this.img = data['image'];
+      console.log(this.img)
+    })
   }
-  addImage(){
-    if(this.image.valid){
+  onImageAdded(event) {
+    this.file = event.target.files[0];
+  }
+  addImage() {
+    if (this.image.valid) {
+
+      this.katService.setImage(this.image.value, this.file).subscribe(
+        ress => {
+
+          if(ress['success']==true){
+
+            this.snackBar.open('Uspesno ste dodali', 'Close', { duration: 1500 })
+
+            if(this.img._id!=''){
+              this.katService.deleteImg(this.img._id).subscribe(
+                data => {
+                  
+                  if (data['success'] == true) {
+                    console.log(this.img.srcSlika)
+                    this.katService.brisiImg(this.img.srcSlika).subscribe(
+                      data=>{
+                        this.loadImg()
+                      }
+                    )
+                  }
+                }
+              )
+            }
+          }
+        }, error => {
+          this.snackBar.open('Greska na serveru', 'Close', { duration: 2500 });
+
+        }
+      )
+
+     /* 
       this.katService.setImage(this.image.value,this.file).subscribe(
         res=>{
           this.snackBar.open('Uspesno ste dodali','Close',{duration:1500})
@@ -36,10 +75,10 @@ export class AddimageComponent implements OnInit {
           this.snackBar.open('Greska na serveru', 'Close', { duration: 2500 });
 
         }
-      )
- 
-    }else{
-      this.snackBar.open('Niste popunili neophodna polja','Uredu')
+      ) */
+
+    } else {
+      this.snackBar.open('Niste popunili neophodna polja', 'Uredu')
     }
   }
 

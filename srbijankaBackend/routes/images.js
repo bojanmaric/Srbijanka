@@ -76,8 +76,34 @@ router.get('/:image', (req, res) => {
 });
 
 
+router.delete('/:id',authenticate,(req,res)=>{
+    Image.deleteImage(req.params.id.toString(),(err)=>{
+        if(err){
+            res.json({success:false,msg:err})
 
+        }else{
+            res.json({success:true,msg:'Uspesno izbrisana slika'})
 
+        }
+    })
+})
+
+router.delete('/delImg/:image',authenticate,(req,res)=>{
+    
+    if (fs.existsSync(path.join(__dirname, '../uploads/images/', req.params.image))){
+        
+        fs.unlinkSync('./uploads/images/'+req.params.image)
+        if(!fs.existsSync(path.join(__dirname, '../uploads/images/', req.params.image))){
+            res.json({success:true,msg:'Uspesno izbrisana slika'})
+        }else{
+            res.json({success:false,msg:'Doslo je do greske na serveru'})
+
+        }
+    
+    } else {
+        res.json({success:false,msg:'File not found'})
+    }
+})
 
 
 

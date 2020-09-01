@@ -33,12 +33,12 @@ export class NavigationComponent implements OnInit{
   catalogs:Catalog[]=[];
   videos:Video[]=[];
  
-  progres=false;
+  
   ruta:string="http://localhost:3000/api/catalogs/image/"
   ngOnInit(){
     this.loadCatalogs();
     this.loadVideos();
-    this.progres=true;
+    
 
 
 
@@ -50,7 +50,7 @@ export class NavigationComponent implements OnInit{
     this.katSlikeService.getLastCatalogs().subscribe(
       data=>{
         this.catalogs=data['catalogs']
-        this.progres=false;
+       
       }
     )
   }

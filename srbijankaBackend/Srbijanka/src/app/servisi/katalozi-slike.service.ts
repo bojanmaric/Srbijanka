@@ -72,6 +72,16 @@ export class KataloziSlikeService {
 
     return this.httpClient.post('http://localhost:3000/api/images/addPicture',fdata)
   }
+  public deleteImg(id){
+    return this.httpClient.delete('http://localhost:3000/api/images/'+id)
+
+  }
+  
+  public brisiImg(img){
+    console.log(img)
+    return this.httpClient.delete('http://localhost:3000/api/images/delImg/'+img)
+
+  }
   public getDailyImage(){
     return this.httpClient.get('http://localhost:3000/api/images/getDailyImage')
   }
