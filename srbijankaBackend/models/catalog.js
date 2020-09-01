@@ -12,10 +12,13 @@ const CatalogShema=new mongoose.Schema({
     link:{
         type:String,
         require:true
+    },
+    date:{
+        type:Date
     }
 });
 
-const Catalog=module.exports=mongoose.model('Catalog',KatalogShema);
+const Catalog=module.exports=mongoose.model('Catalog',CatalogShema);
 
 module.exports.addCatalog=function(catalog,callback){
     catalog.save(callback);
@@ -25,5 +28,9 @@ module.exports.deleteCatalog=function(id,callback){
 }
 
 module.exports.getKataloge=function(query,callback){
-    Catalog.find(query).exec(callback)
+    Catalog.find(query).sort({'date':-1}).exec(callback)
+}
+
+module.exports.getLastTwoCatalogs=function(query,callback){
+    Catalog.find(query).sort({'date':-1}).limit(2).exec(callback)
 }

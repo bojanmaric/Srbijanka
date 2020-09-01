@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { Post } from 'src/app/models/Post';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/servisi/login.service';
+import { KataloziSlikeService } from 'src/app/servisi/katalozi-slike.service';
+import { Image } from 'src/app/models/Image';
 
 @Component({
   selector: 'app-home',
@@ -15,13 +17,35 @@ export class HomeComponent implements OnInit {
 
   ruta: string = 'http://localhost:3000/api/posts/image/';
 
-  constructor(private logingService:LoginService, private postService: PostService, private snackBar: MatSnackBar, private router:Router) { }
+  p:any;
+  constructor(private logingService:LoginService,private katSlikeService:KataloziSlikeService ,private postService: PostService, private snackBar: MatSnackBar, private router:Router) { 
+    
+  }
 
    public posts:any=[];
 
+   public dailyImg:Image=null;
   ngOnInit() {
   
     this.loadData();
+    this.getDailyImage();
+  }
+  getDailyImage(){
+    
+    this.katSlikeService.getLastDailyImage().subscribe(
+      data=>{
+        this.dailyImg=data['image'];
+        console.log(this.dailyImg)
+        
+      },err=>{
+        console.log(err)
+      }
+    )
+
+  }
+  showDailyImage(){
+   
+    return 'http://localhost:3000/api/images/'+this.dailyImg.srcSlika
   }
   deletePost(post){
     

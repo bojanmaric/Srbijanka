@@ -1,1 +1,17 @@
-<p>videos works!</p>
+<div class="videosPage">
+    <div class="videos">
+    <div *ngFor="let video of videos">
+        <div class="video">
+            <div class="videoLink">
+                <iframe [src]="getVideo(video.link)"  frameborder="0" ></iframe>
+                
+            </div>
+            <div class="videoDescription">
+                <p>{{video.description}}</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</div>

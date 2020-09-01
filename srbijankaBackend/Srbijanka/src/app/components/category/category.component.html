@@ -1,0 +1,28 @@
+<div class="postCategoryPage">
+    
+
+    <pagination-controls class="myPagination" style="text-align: center;" previousLabel=" " nextLabel=" " (pageChange)="p = $event"
+    maxSize="5"> </pagination-controls>
+    <div class="posts">
+        <div *ngFor="let post of posts | paginate:{itemsPerPage:14, currentPage:p}">
+            <div class="post" (click)="openPost(post._id)">
+                <div class="postImg">
+                    <img [src]="getImage(post.picture)" alt="">
+                </div>
+                <div class="postContent">
+                    <div class="postTitle" (click)="openPost(post._id)">
+                        <h2>{{post.title}}</h2>
+                    </div>
+                    <div class="postDescription">
+                        <h3>{{post.description}}</h3>
+                    </div>
+                </div>
+                <div *ngIf="ulogovanIn()" class="action">
+                    <button mat-raised-button (click)="deletePost(post._id)" color="warn">Delete</button>
+                    <button mat-raised-button color="primary">Edit</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

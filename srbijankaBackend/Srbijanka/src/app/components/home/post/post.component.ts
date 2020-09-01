@@ -17,7 +17,7 @@ export class PostComponent implements OnInit {
 
   ruta: string = 'http://localhost:3000/api/posts/image/';
 
-  constructor(private actiRoute:ActivatedRoute,private postService:PostService, private fb:FormBuilder, private snackBar:MatSnackBar, private domSanitizer:DomSanitizer) { }
+  constructor( private actiRoute:ActivatedRoute,private postService:PostService, private fb:FormBuilder, private snackBar:MatSnackBar, private domSanitizer:DomSanitizer) { }
 
   comment=this.fb.group({
     postID:['',[Validators.required]],
@@ -74,7 +74,7 @@ export class PostComponent implements OnInit {
     }
   }
   getImage(img){
-    return this.ruta+img;
+    return this.ruta+img
 
   }
 }

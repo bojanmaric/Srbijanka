@@ -7,6 +7,9 @@ var cors = require('cors')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var postRouter=require('./routes/posts');
+var catalogRouter=require('./routes/catalogs');
+var imageRouter=require('./routes/images');
+
 
 const mongoose= require('mongoose');
 const config=require('./config/database')
@@ -36,7 +39,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
-app.use('/api/posts',postRouter)
+app.use('/api/posts',postRouter);
+app.use('/api/catalogs',catalogRouter);
+app.use('/api/images',imageRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

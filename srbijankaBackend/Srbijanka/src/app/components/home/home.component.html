@@ -2,14 +2,16 @@
 <div class="home">
    
     <div class="mainSide">
-        <div class="dailyImage">
-            <img src="../../../assets/images_cms-image-000013509.jpg" alt="">
+        <div  class="dailyImage">
+            <img [src]="showDailyImage()" alt="">
 
         </div>
 
 
+        <pagination-controls class="myPagination" style="text-align: center;" previousLabel=" " nextLabel=" " (pageChange)="p = $event"
+        maxSize="5"> </pagination-controls>
         <div class="posts">
-            <div *ngFor="let post of (posts | async)?.posts">
+            <div *ngFor="let post of (posts | async)?.posts | paginate:{itemsPerPage:14, currentPage:p}" >
                 <div class="post">
                     <div  class="postImage">
                         <img [src]="getImage(post.picture)"  (click)="openPost(post._id)" alt="">
@@ -41,34 +43,4 @@
         </div>
 
     </div>
-   <!--  <div class="aside">
-        <div class="magazin">
-            <div class="magazinPost">
-                <img src="../../../assets/II-Pcelarski-podsetnik-3D-Cover.jpg" alt="">
-            </div>
-            <div class="magazinPost">
-                <img src="../../../assets/Lekovito-bilje-3D-naslovna.jpg" alt="">
-            </div>
-            <div class="magazinPost">
-                <img src="../../../assets/Lekovito-bilje-3D-naslovna.jpg" alt="">
-            </div>
-            <div class="magazinPost">
-                <img src="../../../assets/Lekovito-bilje-3D-naslovna.jpg" alt="">
-            </div>
-
-
-        </div>
-
-        <div class="videos">
-
-            <iframe src="https://www.youtube.com/embed/FUS6DWu1pUU" frameborder="0"></iframe>
-            <iframe src="https://www.youtube.com/embed/FUS6DWu1pUU" frameborder="0"></iframe>
-            <iframe src="https://www.youtube.com/embed/FUS6DWu1pUU" frameborder="0"></iframe> 
-
-
-        </div>
-
-    </div>
- -->
-
 </div>

@@ -24,6 +24,9 @@ export class PostService {
    // console.log(this.dataChange)
     return this.dataChange.asObservable();
   }
+  public getPostByCategory(category):Observable<Post[]>{
+    return this.httpClient.get<Post[]>(this.ruta+'/category/'+category)
+  }
   public getPostById(id) {
 
     return this.httpClient.get(this.ruta + '/getPost/' + id)

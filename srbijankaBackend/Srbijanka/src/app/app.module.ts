@@ -13,7 +13,7 @@ import {MaterialModule} from './material/material.module';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { PostComponent } from './components/home/post/post.component';
-import { MagazinComponent } from './components/magazin/magazin.component';
+
 import { VideosComponent } from './components/videos/videos.component';
 import { ImagesComponent } from './components/images/images.component';
 import { AddpostComponent } from './admin/addpost/addpost.component';
@@ -29,37 +29,30 @@ import { LoginService } from './servisi/login.service';
 import { CommentviewComponent } from './admin/commentview/commentview.component';
 import { CommentDialogComponent } from './components/dialogs/comment-dialog/comment-dialog.component';
 import { MagaziniComponent } from './components/magazini/magazini.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { CategoryComponent } from './components/category/category.component';
+import { KataloziSlikeService } from './servisi/katalozi-slike.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-  
     NavigationComponent,
-  
     FooterComponent,
-  
     HomeComponent,
-  
     PostComponent,
-  
-    MagazinComponent,
-  
+    
     VideosComponent,
-  
     ImagesComponent,
-  
     AddpostComponent,
-  
     AddcatalogComponent,
-  
     AddimageComponent,
-  
     AddvideosComponent,
     LoginComponent,
     RegistrationComponent,
     CommentviewComponent,
     CommentDialogComponent,
-    MagaziniComponent
+    MagaziniComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -69,14 +62,15 @@ import { MagaziniComponent } from './components/magazini/magazini.component';
     MaterialModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
 
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS, 
     useClass:AuthInterceptor,
     multi:true
-  },PostService,LoginService],
+  },PostService,LoginService,KataloziSlikeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

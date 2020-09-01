@@ -69,7 +69,7 @@ router.get('/category/:category',(req,res)=>{
         if(err){
             res.json({success:false, msg:err})
         }else{
-            res.json({success:true, posts:posts})
+            res.json({posts:posts})
         }
     })
 })

@@ -27,3 +27,6 @@ module.exports.deleteImage=function(id,callback){
 module.exports.getImages=function(query,callback){
     Image.find(query).sort({'date':-1}).exec(callback)
 }
+module.exports.getLastone=function(callback){
+    Image.findOne().sort({'date':-1}).exec(callback)
+}

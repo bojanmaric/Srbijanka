@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-material-components/file-input": "^4.0.1",
     "@angular/animations": "~9.1.7",
     "@angular/cdk": "^9.2.4",
     "@angular/common": "~9.1.7",
@@ -23,6 +24,7 @@
     "@angular/router": "~9.1.7",
     "jq": "^1.7.2",
     "jquery": "^3.5.1",
+    "ngx-pagination": "^5.0.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

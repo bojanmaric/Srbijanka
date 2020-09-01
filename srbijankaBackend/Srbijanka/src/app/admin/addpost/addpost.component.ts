@@ -41,6 +41,7 @@ export class AddpostComponent implements OnInit {
   onImageAdded(event) {
     this.slika = event.target.files[0];
     this.picture = this.slika.name;
+    console.log(this.slika)
   }
   add() {
     console.log(this.post)

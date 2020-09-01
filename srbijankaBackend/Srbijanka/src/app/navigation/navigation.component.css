@@ -65,6 +65,29 @@ mat-toolbar{
   outline: none;
   
 }
+.meni{
+  text-decoration: none;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+.meni .meniItem{
+  float: left;
+  list-style: none;
+  
+  font-weight: 200;
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #fff;
+  cursor: pointer;
+  padding: 0 8px 0 8px;
+  border-radius: 3px;
+  transition: .5s;
+  outline: none;
+}
+.meni .meniItem:hover{
+  background-color: rgb(40, 90, 50);
+  color: rgb(117, 175, 125);
+}
 .cen button:hover{
   color: rgb(162, 162, 162);
 }
@@ -73,6 +96,7 @@ mat-toolbar mat-icon{
 }
 mat-nav-list a{
   color: #004d00;
+  text-transform: uppercase;
 }
 
 
@@ -85,6 +109,8 @@ mat-nav-list a{
 }
 
 .magazin{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   display: block;
   
 }
@@ -144,5 +170,8 @@ mat-nav-list a{
   .right .magazin{
     display: grid;
     grid-template-columns: 50% 50%;
+  }
+  .right{
+    margin: 1rem;
   }
 }
