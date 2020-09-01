@@ -32,6 +32,7 @@ import { MagaziniComponent } from './components/magazini/magazini.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { CategoryComponent } from './components/category/category.component';
 import { KataloziSlikeService } from './servisi/katalozi-slike.service';
+import { EditpostComponent } from './components/dialogs/editpost/editpost.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { KataloziSlikeService } from './servisi/katalozi-slike.service';
     CommentviewComponent,
     CommentDialogComponent,
     MagaziniComponent,
-    CategoryComponent
+    CategoryComponent,
+    EditpostComponent
   ],
   imports: [
     BrowserModule,

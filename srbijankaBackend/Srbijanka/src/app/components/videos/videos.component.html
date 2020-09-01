@@ -9,6 +9,9 @@
             <div class="videoDescription">
                 <p>{{video.description}}</p>
             </div>
+            <div class="action" *ngIf="ulogovanIn()">
+                <button mat-raised-button color="warn" (click)="deleteVideo(video._id)">Delete</button>
+            </div>
         </div>
 
     </div>

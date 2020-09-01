@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { LoginService } from 'src/app/servisi/login.service';
 import { KataloziSlikeService } from 'src/app/servisi/katalozi-slike.service';
 import { Image } from 'src/app/models/Image';
+import { MatDialog } from '@angular/material/dialog';
+import { EditpostComponent } from '../dialogs/editpost/editpost.component';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +20,10 @@ export class HomeComponent implements OnInit {
   ruta: string = 'http://localhost:3000/api/posts/image/';
 
   p:any;
-  constructor(private logingService:LoginService,private katSlikeService:KataloziSlikeService ,private postService: PostService, private snackBar: MatSnackBar, private router:Router) { 
+  constructor(private logingService:LoginService,
+    private katSlikeService:KataloziSlikeService ,
+    private postService: PostService, private snackBar: MatSnackBar, 
+    private router:Router, private matDialog:MatDialog) { 
     
   }
 
@@ -59,6 +64,15 @@ export class HomeComponent implements OnInit {
 
     }
     this.loadData();
+  }
+  editPost(post:Post){
+    const dialogRef=this.matDialog.open(EditpostComponent,{data:post})
+
+    dialogRef.afterClosed().subscribe(
+      result=>{
+        this.loadData();
+      }
+    )
   }
 
   openPost(id){

@@ -12,9 +12,7 @@
                 </div>
             </a>
                 <div *ngIf="ulogovanIn()" class="action">
-                    <button mat-raised-button (click)="deleteMagazin(catalog._id)" color="warn">Delete</button>
-                    <button mat-raised-button color="primary">Edit</button>
-
+                    <button mat-raised-button (click)="deleteMagazin(catalog._id, catalog.srcSlika)" color="warn">Delete</button>
                 </div> 
             </div>
        

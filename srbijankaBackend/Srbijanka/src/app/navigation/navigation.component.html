@@ -93,9 +93,11 @@
 
     <div class="centerPart">
       <div class="left">
-        <router-outlet></router-outlet>
+        <router-outlet (activate)="onActivate($event)"></router-outlet>
       </div>
       <div class="right">
+        <h1 [routerLink]="['/magazini']" class="snimci" >Magazini</h1>
+
         <div class="magazin" [routerLink]="['/magazini']" style="cursor: pointer;">
           <div *ngFor="let catalog of catalogs">
 
@@ -108,7 +110,7 @@
 
 
         </div>
-        <h1 [routerLink]="['/videos']"  style="cursor: pointer; text-align:center; color:rgb(47, 108, 71); outline: none;">Snimci</h1>
+        <h1 [routerLink]="['/videos']" class="snimci" >Snimci</h1>
         <div class="videos">
 
           <div *ngFor="let video of videos">
@@ -119,6 +121,7 @@
         </div>
       </div>
     </div>
+    <mat-progress-bar *ngIf="progres" color="warn" mode="indeterminate"></mat-progress-bar>
     <app-footer></app-footer>
   </mat-sidenav-content>
 </mat-sidenav-container>

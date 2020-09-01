@@ -46,8 +46,10 @@ export class KataloziSlikeService {
     return this.httpClient.post(this.ruta+'addVideo',video)
   }
 
-  public deleteCatalog(id){
-    return this.httpClient.delete(this.ruta+'deleteCatalog/'+id)
+  public deleteCatalog(id, slika){
+     this.httpClient.delete(this.ruta+'deleteCatalog/'+id).subscribe()
+     return this.httpClient.delete(this.ruta+'brisiImgCataloga/'+slika)
+
   }
 
   public deleteVideo(id){

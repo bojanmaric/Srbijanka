@@ -33,7 +33,9 @@
     
     
                     <div *ngIf="ulogovanIn()" class="actions">
-                        <button mat-raised-button color="success" (click)="deletePost(post)">Delete</button>
+                        <button mat-raised-button color="warn" (click)="deletePost(post)">Delete</button>
+                        <button mat-raised-button color="primary" (click)="editPost(post)">Edit</button>
+
                     </div>
                 </div>
 

@@ -15,14 +15,13 @@ export class AddpostComponent implements OnInit {
   constructor(private fb: FormBuilder, private postService: PostService, private snackBar: MatSnackBar) { }
 
   slika: File = null;
-  picture: string;
-
-
+  // picture: string;
   pokazi = false;
 
+  user: any;
   post = this.fb.group({
-    userPost: ['asfsda'],
-    userID: ['1'],
+    userPost: [''],
+    userID: [''],
     picture: [''],
     description: ['', [Validators.required]],
     title: ['', [Validators.required]],
@@ -31,26 +30,25 @@ export class AddpostComponent implements OnInit {
     category: ['', [Validators.required]]
 
   })
-
-
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem('user'));
   }
   resetForm() {
     this.post.reset;
   }
   onImageAdded(event) {
     this.slika = event.target.files[0];
-    this.picture = this.slika.name;
-    console.log(this.slika)
   }
   add() {
-    console.log(this.post)
+
+    this.post.patchValue({ userID: this.user._id, userPost: this.user.name });
     if (this.post.valid) {
+      console.log(this.post.value)
       this.pokazi = true;
       this.postService.addPost(this.post, this.slika).subscribe(
         res => {
           this.pokazi = false;
-          this.postService.getAllPosts().subscribe() 
+          this.postService.getAllPosts().subscribe()
           this.snackBar.open('Uspešno dodat Post', 'Close', { duration: 2500 });
 
         }, error => {
@@ -58,15 +56,10 @@ export class AddpostComponent implements OnInit {
           this.snackBar.open('Greska', 'Close', { duration: 2500 });
 
         }
-
       );
 
     } else {
-
       this.snackBar.open('niste popunili sva polja', 'Close', { duration: 2500 });
     }
-
-
   }
-
 }

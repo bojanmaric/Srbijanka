@@ -16,10 +16,11 @@
 
     position: relative;
     width: 220px;
-    height: 300px;
+    height: auto!important;
     margin: 1rem;
     overflow: hidden;
     box-shadow: -2px 0 8px 0 rgb(121, 121, 121);
+    z-index: 0;
 }
 .post .postImg{
     width: 100%;
@@ -31,17 +32,33 @@
 }
 .post .postContent{
     padding: 5px 8px;
+    
     flex-wrap: wrap;
+}
+.postContent h2{
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 21px;
+}
+.postContent h3{
+    font-size: 16px;
+}
+.post .postDescription{
+    height: 50px;
+    overflow: hidden;
 }
 .postImg img:hover{
     cursor: pointer;
     transform: scale(1.2);
 }
+.postTitle{
+    height: auto;
+}
 .post .action{
-    position: absolute;
-    bottom: 0;
+    
     display: grid;
     grid-template-columns: 50% 50%;
+    z-index: 1;
 
     width: 100%;
 }

@@ -32,7 +32,7 @@ export class PostService {
     return this.httpClient.get(this.ruta + '/getPost/' + id)
 
   }
-  public updateArtikal(id, post) {
+  public updatePost(id, post) {
 
     return this.httpClient.put(this.ruta + '/' + id, post);
   }

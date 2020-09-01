@@ -38,6 +38,18 @@ router.post('/addPost',upload.single('file'), authenticate, function(req,res,nex
         }
     })
 });
+router.put('/:id', authenticate,(req,res)=>{
+    console.log(req.body)
+    
+    Post.updatePost(req.params.id.toString(), req.body,(err)=>{
+        if(err){
+            res.json({success:false,msg:err})
+        }else{
+            res.json({success:true,msg:'Uspesno ste izmenili post'})
+        }
+    })
+
+})
 router.get('/getAll',function(req,res, next){
     Post.getPosts((err,posts)=>{
         if(err){
@@ -152,7 +164,7 @@ router.delete('/comment/:id',authenticate, (req,res)=>{
         }
     })
 })
-router.get('/getComments',(req,res)=>{
+router.get('/getComments',authenticate,(req,res)=>{
     Comment.getBannedComment((err,comments)=>{
         if(err){
             res.json({success:false,msg:err})

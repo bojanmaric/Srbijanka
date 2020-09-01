@@ -25,12 +25,22 @@ export class MagaziniComponent implements OnInit {
     this.katSlikeService.getAllCatalogs().subscribe(
       data=>{
         this.katalozi=data['catalogs']
-        console.log(this.katalozi)
+        
       }
     )
   }
-  deleteMagazin(id){
-    
+  deleteMagazin(id,slika){
+    this.katSlikeService.deleteCatalog(id,slika).subscribe(
+      data=>{
+        
+          this.loadData();
+          this.snackBar.open("Uspesno obrisan magazin",'Uredu',{duration:1500})
+        
+      },err=>{
+        this.snackBar.open("Doslo je do greske na serveru",'Uredu',{duration:1500})
+
+      }
+    )
   }
   getImage(img){
     return this.ruta+img

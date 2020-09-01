@@ -6,6 +6,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Post } from 'src/app/models/Post';
 import { Observable } from 'rxjs';
 import { LoginService } from 'src/app/servisi/login.service';
+import { MatDialog } from '@angular/material/dialog';
+import { EditpostComponent } from '../dialogs/editpost/editpost.component';
 
 @Component({
   selector: 'app-category',
@@ -14,7 +16,7 @@ import { LoginService } from 'src/app/servisi/login.service';
 })
 export class CategoryComponent implements OnInit {
 
-  constructor(private logingService:LoginService, private actiRoute:ActivatedRoute, private router:Router,private postService:PostService,private snackBar:MatSnackBar) { }
+  constructor(private logingService:LoginService,private dialogRef:MatDialog, private actiRoute:ActivatedRoute, private router:Router,private postService:PostService,private snackBar:MatSnackBar) { }
 
   posts:Post[];
   kategorija='';
@@ -44,6 +46,7 @@ export class CategoryComponent implements OnInit {
 
   deletePost(post){
     
+    console.log(post)
     const uspesno = this.postService.deletePost(post._id,post.picture);
     
     if(uspesno){
@@ -56,6 +59,15 @@ export class CategoryComponent implements OnInit {
     this.loadData();
   }
 
+  editPost(post:Post){
+    const dialogReff=this.dialogRef.open(EditpostComponent,{data:post})
+
+    dialogReff.afterClosed().subscribe(
+      result=>{
+        this.loadData();
+      }
+    )
+  }
   openPost(id){
     this.router.navigate(['/post/'+id])
 

@@ -9,6 +9,7 @@ import { Image } from '../models/Image';
 import { Catalog } from '../models/Catalog';
 import { Video } from '../models/Videos';
 import { DomSanitizer } from '@angular/platform-browser';
+import { MatProgressBar } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-navigation',
@@ -32,18 +33,23 @@ export class NavigationComponent implements OnInit{
   catalogs:Catalog[]=[];
   videos:Video[]=[];
  
+  progres=true;
   ruta:string="http://localhost:3000/api/catalogs/image/"
   ngOnInit(){
     this.loadCatalogs();
     this.loadVideos();
 
 
+
   }
-  
+  onActivate(event){
+    document.querySelector('mat-sidenav-content').scrollTop = 0;
+  }
   loadCatalogs(){
     this.katSlikeService.getLastCatalogs().subscribe(
       data=>{
         this.catalogs=data['catalogs']
+        this.progres=false;
       }
     )
   }

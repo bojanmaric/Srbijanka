@@ -17,7 +17,7 @@ export class VideosComponent implements OnInit {
   videos:Observable<Video[]>;
   constructor(private logingService:LoginService,
     private domSanitizer:DomSanitizer,private katSlikeService:KataloziSlikeService ,private postService: PostService, private snackBar: MatSnackBar) { }
-  //ruta: string = 'http://localhost:3000/api/catalogs/image/';
+ 
 
   ngOnInit(): void {
     this.loadData()
@@ -27,12 +27,25 @@ export class VideosComponent implements OnInit {
     this.katSlikeService.getAllVideos().subscribe(
       data=>{
         this.videos=data['videos'];
-        console.log(this.videos)
+        
       }
     )
   }
   public getVideo(video){
     return this.domSanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/'+video)
+  }
+  deleteVideo(id){
+    this.katSlikeService.deleteVideo(id).subscribe(
+      data=>{
+        if(data['success']==true){
+          this.snackBar.open('Uspesno ste izbisali Video','Uredu',{duration:1400})
+          this.loadData()
+        }
+      },err=>{
+        this.snackBar.open('Doslo je do greske na serveru','Uredu',{duration:1400})
+        console.log(err)
+      } 
+    )
   }
   
   ulogovanIn() {

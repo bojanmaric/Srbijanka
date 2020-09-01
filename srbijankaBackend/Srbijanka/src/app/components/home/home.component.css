@@ -77,36 +77,51 @@
 }
 
 .post .postContent {
-  padding: 20px;
+  padding: 5px 8px;
 }
 
 .post .postContent .postTitle {
   text-align: justify;
-  text-transform: uppercase;
+  
+  height: auto;
 
 
 }
 
 .post .postContent .postTitle h2 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
   line-height: 21px;
+  
+  
 
 
 }
 
 .actions {
   position: absolute;
-  margin: 10px;
+  width: 100%;
+ 
   top: 0;
   z-index: 1;
+  display: grid;
+  grid-template-columns: 50% 50%;
 
+}
+.actions button{
+  width: 90%;
+  margin: 5px auto;
 }
 
 .post .postContent .postDescription {
   text-align: justify;
+  height: 50px;
+  overflow: hidden;
   
   
+}
+.postDescription h3{
+  font-size: 16px;
 }
 .postDescription p{
   height: 100px;
