@@ -87,7 +87,9 @@ export class HomeComponent implements OnInit {
     return this.ruta+img
 
   }
-  
+  goTop(){
+    document.querySelector('mat-sidenav-content').scrollTop = 0;
+  }
   ulogovanIn() {
     if (this.logingService.isLogged()) {
       return true;

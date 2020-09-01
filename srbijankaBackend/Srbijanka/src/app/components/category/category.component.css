@@ -3,7 +3,8 @@
     margin: 0 auto 3rem auto;
     background-color: #fff;
     padding-top: 1rem;
-
+    padding-bottom: 1rem;
+    opacity: .9;
    
 }
 .posts{
@@ -11,6 +12,10 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+}
+mat-progress-bar{
+    width: 95%;
+    margin:0 auto;
 }
 .post{
 

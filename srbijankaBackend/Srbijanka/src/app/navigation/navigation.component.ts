@@ -33,11 +33,12 @@ export class NavigationComponent implements OnInit{
   catalogs:Catalog[]=[];
   videos:Video[]=[];
  
-  progres=true;
+  progres=false;
   ruta:string="http://localhost:3000/api/catalogs/image/"
   ngOnInit(){
     this.loadCatalogs();
     this.loadVideos();
+    this.progres=true;
 
 
 

@@ -1,6 +1,9 @@
 <div class="magaziniPage">
+    
+    <pagination-controls class="myPagination" style="text-align: center;" previousLabel=" " nextLabel=" " (pageChange)="p = $event"
+    maxSize="5" (click)="goTop()"> </pagination-controls>
     <div class="magazini">
-        <div *ngFor="let catalog of katalozi">
+        <div *ngFor="let catalog of katalozi  | paginate:{itemsPerPage:14, currentPage:p}">
            
             <div class="magazin" >
                 <a href="{{catalog.link}}" target="_blank">
@@ -18,4 +21,7 @@
        
         </div>
     </div>
+    
+    <pagination-controls class="myPagination" style="text-align: center;" previousLabel=" " nextLabel=" " (pageChange)="p = $event"
+    maxSize="5" (click)="goTop()"> </pagination-controls>
 </div>

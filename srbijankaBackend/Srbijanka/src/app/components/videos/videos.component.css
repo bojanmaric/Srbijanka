@@ -1,11 +1,12 @@
 .videosPage{
     width: 90%;
     margin: 0 auto 3rem auto;
+    background-color: #fff;
+    padding: 1rem 0;
   
 }
 .videos{
     padding: 1rem;
-    background-color: #fff;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

@@ -14,11 +14,12 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class VideosComponent implements OnInit {
 
-  videos:Observable<Video[]>;
+  videos:Video[];
   constructor(private logingService:LoginService,
     private domSanitizer:DomSanitizer,private katSlikeService:KataloziSlikeService ,private postService: PostService, private snackBar: MatSnackBar) { }
  
 
+    p:any;
   ngOnInit(): void {
     this.loadData()
   }
@@ -34,6 +35,11 @@ export class VideosComponent implements OnInit {
   public getVideo(video){
     return this.domSanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/'+video)
   }
+  
+  goTop(){
+    document.querySelector('mat-sidenav-content').scrollTop = 0;
+  }
+
   deleteVideo(id){
     this.katSlikeService.deleteVideo(id).subscribe(
       data=>{

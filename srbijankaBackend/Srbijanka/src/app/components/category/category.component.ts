@@ -21,17 +21,20 @@ export class CategoryComponent implements OnInit {
   posts:Post[];
   kategorija='';
   p:any;
+  progres=false;
   ruta:string='http://localhost:3000/api/posts/image/'
   ngOnInit(): void {
     this.loadData();
   }
   loadData(){
+    this.progres=true;
     this.actiRoute.paramMap.subscribe((params:ParamMap)=>{
       this.kategorija=params.get('category')
 
       this.postService.getPostByCategory(this.kategorija).subscribe(
         data=>{
           this.posts=data['posts']
+          this.progres=false;
          
         }
       )
@@ -59,6 +62,9 @@ export class CategoryComponent implements OnInit {
     this.loadData();
   }
 
+  goTop(){
+    document.querySelector('mat-sidenav-content').scrollTop = 0;
+  }
   editPost(post:Post){
     const dialogReff=this.dialogRef.open(EditpostComponent,{data:post})
 

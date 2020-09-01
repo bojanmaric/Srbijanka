@@ -13,10 +13,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class MagaziniComponent implements OnInit {
 
-  katalozi:Observable<Catalog[]>;
+  katalozi:Catalog[];
   constructor(private logingService:LoginService,private katSlikeService:KataloziSlikeService,private postService: PostService, private snackBar: MatSnackBar) { }
   ruta: string = 'http://localhost:3000/api/catalogs/image/';
 
+  p:any;
   ngOnInit(): void {
     this.loadData()
   }
@@ -29,6 +30,11 @@ export class MagaziniComponent implements OnInit {
       }
     )
   }
+  
+  goTop(){
+    document.querySelector('mat-sidenav-content').scrollTop = 0;
+  }
+
   deleteMagazin(id,slika){
     this.katSlikeService.deleteCatalog(id,slika).subscribe(
       data=>{

@@ -33,7 +33,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { CategoryComponent } from './components/category/category.component';
 import { KataloziSlikeService } from './servisi/katalozi-slike.service';
 import { EditpostComponent } from './components/dialogs/editpost/editpost.component';
-
+import {CdkScrollableModule} from '@angular/cdk/scrolling';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +65,8 @@ import { EditpostComponent } from './components/dialogs/editpost/editpost.compon
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    CdkScrollableModule
 
   ],
   providers: [{

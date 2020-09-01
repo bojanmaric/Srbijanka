@@ -1,8 +1,9 @@
+<mat-progress-bar color="primary" *ngIf="progres" mode="indeterminate"></mat-progress-bar>
 <div class="postCategoryPage">
     
 
     <pagination-controls class="myPagination" style="text-align: center;" previousLabel=" " nextLabel=" " (pageChange)="p = $event"
-    maxSize="5"> </pagination-controls>
+    maxSize="5" (click)="goTop()"> </pagination-controls>
     <div class="posts">
         <div *ngFor="let post of posts | paginate:{itemsPerPage:14, currentPage:p}">
             <div class="post" >
@@ -28,4 +29,7 @@
             </div>
         </div>
     </div>
+    
+    <pagination-controls class="myPagination" style="text-align: center;" previousLabel=" " nextLabel=" " (pageChange)="p = $event"
+    maxSize="5" (click)="goTop()"> </pagination-controls>
 </div>
